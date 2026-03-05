@@ -70,7 +70,7 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --radius: var(--radius);
-  --font-sans: 'Poppins', 'Poppins Fallback';
+  --font-sans: var(--font-poppins), 'Poppins', sans-serif;
   
   /* Brand color utilities */
   --color-brand-blue: var(--blue-main);

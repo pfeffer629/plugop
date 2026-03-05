@@ -11,9 +11,9 @@ export default function Footer() {
               <Image
                 src="/images/logo-full.svg"
                 alt="PlugOp"
-                width={120}
-                height={34}
-                className="h-7 w-auto"
+                width={140}
+                height={40}
+                className="h-9 w-auto"
               />
             </Link>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">

@@ -15,9 +15,10 @@ export default function Header() {
           <Image
             src="/images/logo-full.svg"
             alt="PlugOp"
-            width={140}
-            height={40}
-            className="h-8 w-auto"
+            width={160}
+            height={45}
+            className="h-10 w-auto"
+            priority
           />
         </Link>
 
