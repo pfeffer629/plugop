@@ -14,7 +14,7 @@ export default function Contact() {
                 fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-primary/20" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#272B41]/50 to-[#5260C4]/30" />
             </div>
 
             <div className="flex-1 p-8 md:p-12">

@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0d9488",
+  themeColor: "#5260C4",
   width: "device-width",
   initialScale: 1,
 };
@@ -32,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={poppins.variable}>
       <body className="antialiased">{children}</body>
     </html>
   );

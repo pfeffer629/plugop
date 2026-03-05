@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -6,25 +7,14 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-12">
         <div className="flex flex-col gap-8 md:flex-row md:justify-between">
           <div>
-            <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="text-primary-foreground"
-                >
-                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                </svg>
-              </div>
-              <span className="text-lg font-bold tracking-tight text-foreground font-sans">
-                PlugOp
-              </span>
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/images/logo-full.svg"
+                alt="PlugOp"
+                width={120}
+                height={34}
+                className="h-7 w-auto"
+              />
             </Link>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
               Cost-effective EV charging programs for apartment complexes and
