@@ -4,6 +4,8 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden pt-20">
+      {/* Decorative accent */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#8F52C4]/10 to-transparent pointer-events-none" />
       <div className="absolute inset-0">
         <Image
           src="/images/hero-bg.jpg"
@@ -12,7 +14,7 @@ export default function Hero() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-foreground/70" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#272B41]/90 via-[#272B41]/80 to-[#5260C4]/60" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 md:py-32">

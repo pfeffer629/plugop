@@ -4,39 +4,53 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0f172a;
-  --card: #f8fafc;
-  --card-foreground: #0f172a;
-  --primary: #0d9488;
+  --foreground: #141414;
+  --card: #EFEEF7;
+  --card-foreground: #141414;
+  --primary: #5260C4;
   --primary-foreground: #ffffff;
-  --secondary: #f1f5f9;
-  --secondary-foreground: #334155;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #0d9488;
+  --secondary: #D1E7F3;
+  --secondary-foreground: #272B41;
+  --muted: #6F6E6E;
+  --muted-foreground: #5B5959;
+  --accent: #8F52C4;
   --accent-foreground: #ffffff;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #0d9488;
+  --border: #D1E7F3;
+  --input: #D1E7F3;
+  --ring: #5260C4;
   --radius: 0.625rem;
+  
+  /* Brand colors */
+  --blue-main: #5260C4;
+  --blue-dark: #2A3B8C;
+  --blue-darkest: #272B41;
+  --blue-light: #D1E7F3;
+  --blue-lightest: #EFEEF7;
+  --gray-main: #212121;
+  --gray-dark: #1D1D1D;
+  --gray-darkest: #141414;
+  --gray-light: #5B5959;
+  --gray-lightest: #6F6E6E;
+  --purple-main: #8F52C4;
+  --purple-deep: #6A52C4;
 }
 
 .dark {
-  --background: #0b1120;
-  --foreground: #f1f5f9;
-  --card: #1e293b;
-  --card-foreground: #f1f5f9;
-  --primary: #14b8a6;
-  --primary-foreground: #0b1120;
-  --secondary: #1e293b;
-  --secondary-foreground: #e2e8f0;
-  --muted: #1e293b;
-  --muted-foreground: #94a3b8;
-  --accent: #14b8a6;
-  --accent-foreground: #0b1120;
-  --border: #334155;
-  --input: #334155;
-  --ring: #14b8a6;
+  --background: #141414;
+  --foreground: #EFEEF7;
+  --card: #1D1D1D;
+  --card-foreground: #EFEEF7;
+  --primary: #5260C4;
+  --primary-foreground: #ffffff;
+  --secondary: #272B41;
+  --secondary-foreground: #D1E7F3;
+  --muted: #212121;
+  --muted-foreground: #6F6E6E;
+  --accent: #8F52C4;
+  --accent-foreground: #ffffff;
+  --border: #272B41;
+  --input: #272B41;
+  --ring: #5260C4;
 }
 
 @theme inline {
@@ -56,7 +70,15 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --radius: var(--radius);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-poppins), 'Poppins', sans-serif;
+  
+  /* Brand color utilities */
+  --color-brand-blue: var(--blue-main);
+  --color-brand-blue-dark: var(--blue-dark);
+  --color-brand-blue-darkest: var(--blue-darkest);
+  --color-brand-blue-light: var(--blue-light);
+  --color-brand-purple: var(--purple-main);
+  --color-brand-purple-deep: var(--purple-deep);
 }
 
 * {
