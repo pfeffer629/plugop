@@ -72,36 +72,36 @@ export default function Contact() {
                 </h3>
                 
                 {/* Benefits */}
-                <div className="space-y-3 mb-6">
+                <div className="space-y-2 mb-4">
                   {benefits.map((benefit, index) => (
                     <div 
                       key={index} 
-                      className="flex items-center gap-3"
+                      className="flex items-center gap-2"
                     >
-                      <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-                        <CheckCircle2 className="w-4 h-4 text-white" />
-                      </div>
+                      <CheckCircle2 className="w-4 h-4 text-white/70 flex-shrink-0" />
                       <span className="text-white/90 text-sm">{benefit}</span>
                     </div>
                   ))}
                 </div>
                 
                 {/* Contact info */}
-                <div className="mt-auto space-y-3 pt-6 border-t border-white/10">
-                  {contactInfo.map((info, index) => {
-                    const Icon = info.icon;
-                    return (
-                      <div key={index} className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
-                          <Icon className="w-5 h-5 text-white" />
+                <div className="mt-auto pt-4 border-t border-white/10">
+                  <div className="grid grid-cols-2 gap-3">
+                    {contactInfo.map((info, index) => {
+                      const Icon = info.icon;
+                      return (
+                        <div key={index} className="flex items-center gap-2">
+                          <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
+                            <Icon className="w-4 h-4 text-white" />
+                          </div>
+                          <div>
+                            <div className="text-xs text-white/60">{info.label}</div>
+                            <div className="text-xs text-white font-medium">{info.value}</div>
+                          </div>
                         </div>
-                        <div>
-                          <div className="text-xs text-white/60">{info.label}</div>
-                          <div className="text-sm text-white font-medium">{info.value}</div>
-                        </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>
