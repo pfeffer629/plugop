@@ -45,7 +45,7 @@ export default function Header() {
             alt="PlugOp"
             width={140}
             height={40}
-            className="h-9 transition-transform duration-300 group-hover:scale-105 drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)] dark:drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)] dark:brightness-0 dark:invert"
+            className="h-9"
             style={{ width: "auto", height: "36px" }}
             priority
           />
