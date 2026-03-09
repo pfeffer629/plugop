@@ -85,6 +85,21 @@
   border-color: var(--border);
 }
 
+/* Pointer cursor for interactive elements */
+button,
+a,
+[role="button"],
+[type="button"],
+[type="submit"],
+[type="reset"],
+input[type="checkbox"],
+input[type="radio"],
+select,
+label[for],
+.cursor-pointer {
+  cursor: pointer;
+}
+
 html {
   scroll-behavior: smooth;
 }
