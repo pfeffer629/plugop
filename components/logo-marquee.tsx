@@ -32,7 +32,7 @@ export default function LogoMarquee() {
           {[...partners, ...partners, ...partners].map((partner, i) => (
             <div
               key={`${partner.name}-${i}`}
-              className="group flex items-center justify-center w-[160px] h-[72px] rounded-xl bg-card/50 border border-border/50 hover:border-primary/20 hover:bg-card hover:shadow-md transition-all duration-300"
+              className="group flex items-center justify-center w-[160px] h-[72px] rounded-xl bg-white border border-border/30 hover:border-primary/30 hover:shadow-lg transition-all duration-300"
             >
               {partner.bgColor ? (
                 <div 

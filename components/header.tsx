@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight, Sun, Moon } from "lucide-react";
+import { useTheme } from "./theme-provider";
 
 const navLinks = [
   { href: "#features", label: "Features" },
@@ -15,6 +16,7 @@ const navLinks = [
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,8 +65,20 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* CTA Button */}
-        <div className="hidden lg:flex items-center gap-4">
+        {/* CTA Button & Theme Toggle */}
+        <div className="hidden lg:flex items-center gap-3">
+          <button
+            onClick={toggleTheme}
+            className="relative w-10 h-10 flex items-center justify-center rounded-full bg-secondary/50 text-foreground transition-all duration-300 hover:bg-secondary focus-ring"
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            <span className={`absolute transition-all duration-300 ${theme === "dark" ? "opacity-0 rotate-90 scale-0" : "opacity-100 rotate-0 scale-100"}`}>
+              <Sun className="w-5 h-5" />
+            </span>
+            <span className={`absolute transition-all duration-300 ${theme === "dark" ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-0"}`}>
+              <Moon className="w-5 h-5" />
+            </span>
+          </button>
           <Link
             href="#contact"
             className="btn-primary px-5 py-2.5 rounded-full text-sm font-semibold text-white focus-ring"
@@ -99,25 +113,32 @@ export default function Header() {
             : "opacity-0 -translate-y-4 pointer-events-none"
         }`}
       >
-        <div className="glass mx-4 mt-2 p-6 rounded-2xl shadow-xl">
+        <div className="mx-4 mt-2 p-6 rounded-2xl shadow-xl bg-card border border-border">
           <nav className="flex flex-col gap-1">
             {navLinks.map((link, index) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="px-4 py-3 text-base font-medium text-foreground/80 rounded-xl transition-all duration-300 hover:bg-primary/5 hover:text-foreground hover:pl-6"
+                className="px-4 py-3 text-base font-medium text-foreground rounded-xl transition-all duration-300 hover:bg-primary/10 hover:pl-6"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 {link.label}
               </Link>
             ))}
           </nav>
-          <div className="mt-4 pt-4 border-t border-border">
+          <div className="mt-4 pt-4 border-t border-border flex items-center gap-3">
+            <button
+              onClick={toggleTheme}
+              className="w-12 h-12 flex items-center justify-center rounded-xl bg-secondary text-foreground transition-all duration-300 hover:bg-secondary/80"
+              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {theme === "dark" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+            </button>
             <Link
               href="#contact"
               onClick={() => setMobileOpen(false)}
-              className="btn-primary w-full px-5 py-3 rounded-xl text-center text-sm font-semibold text-white block"
+              className="btn-primary flex-1 px-5 py-3 rounded-xl text-center text-sm font-semibold text-white block"
             >
               <span>Get Started</span>
             </Link>
