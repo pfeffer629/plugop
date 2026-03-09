@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Monitor, Smartphone, BarChart3, ArrowRight, Sparkles } from "lucide-react";
+import { Monitor, Smartphone, BarChart3, Sparkles } from "lucide-react";
 
 const features = [
   {
@@ -143,7 +143,7 @@ export default function UserInterface() {
               everything they need at a glance.
             </p>
 
-            {/* Feature list with animation */}
+            {/* Feature list */}
             <div className="mt-10 space-y-4">
               {features.map((feature, index) => {
                 const Icon = feature.icon;
@@ -153,42 +153,25 @@ export default function UserInterface() {
                   <button
                     key={index}
                     onClick={() => setActiveFeature(index)}
-                    className={`w-full text-left p-5 rounded-2xl border transition-all duration-500 ${
+                    className={`w-full text-left p-5 rounded-2xl border transition-all duration-300 ${
                       isActive
                         ? "bg-card border-primary/20 shadow-lg shadow-primary/5"
-                        : "bg-transparent border-transparent hover:bg-card/50"
+                        : "bg-transparent border-border hover:bg-card/50"
                     }`}
                   >
                     <div className="flex items-start gap-4">
-                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
                         isActive ? "bg-primary text-white" : "bg-secondary text-foreground"
                       }`}>
                         <Icon className="w-5 h-5" />
                       </div>
                       <div className="flex-1">
                         <h3 className="font-semibold text-foreground">{feature.title}</h3>
-                        <p className={`text-sm text-muted-foreground mt-1 transition-all duration-300 ${
-                          isActive ? "opacity-100" : "opacity-70"
-                        }`}>
+                        <p className="text-sm text-muted-foreground mt-1">
                           {feature.description}
                         </p>
                       </div>
-                      <ArrowRight className={`w-5 h-5 mt-1 transition-all duration-300 ${
-                        isActive ? "opacity-100 translate-x-0 text-primary" : "opacity-0 -translate-x-2"
-                      }`} />
                     </div>
-                    
-                    {/* Progress bar */}
-                    {isActive && (
-                      <div className="mt-4 h-1 rounded-full bg-border overflow-hidden">
-                        <div 
-                          className="h-full bg-primary rounded-full"
-                          style={{
-                            animation: "progress 4s linear forwards",
-                          }}
-                        />
-                      </div>
-                    )}
                   </button>
                 );
               })}
@@ -196,13 +179,6 @@ export default function UserInterface() {
           </div>
         </div>
       </div>
-      
-      <style jsx>{`
-        @keyframes progress {
-          from { width: 0%; }
-          to { width: 100%; }
-        }
-      `}</style>
     </section>
   );
 }

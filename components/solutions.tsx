@@ -162,18 +162,18 @@ export default function Solutions() {
                       }`}
                     >
                       {active === solution.id && (
-                        <div className="space-y-6">
-                          <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center">
-                            <Icon className="w-10 h-10 text-primary" />
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-3">
+                            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                              <Icon className="w-6 h-6 text-primary" />
+                            </div>
+                            <div>
+                              <span className="text-xs font-semibold text-primary uppercase tracking-wide">{current.label}</span>
+                              <h3 className="text-xl font-bold text-foreground">{solution.title}</h3>
+                            </div>
                           </div>
-                          <div>
-                            <span className="px-3 py-1 text-xs font-semibold bg-primary/10 text-primary rounded-full">
-                              {current.label}
-                            </span>
-                          </div>
-                          <h3 className="text-2xl font-bold text-foreground">{solution.title}</h3>
                           <p className="text-muted-foreground leading-relaxed">{solution.description}</p>
-                          <div className="grid gap-3 pt-2">
+                          <div className="grid gap-2">
                             {solution.features.map((feature, i) => (
                               <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-secondary/50">
                                 <Check className="w-5 h-5 text-primary flex-shrink-0" />
