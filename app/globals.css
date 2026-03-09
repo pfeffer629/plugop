@@ -378,9 +378,9 @@ body::after {
 }
 
 .dark .header-scrolled {
-  background: linear-gradient(135deg, rgba(15, 15, 20, 0.98) 0%, rgba(20, 20, 35, 0.95) 100%);
-  border-bottom: 1px solid rgba(107, 122, 219, 0.15);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 247, 255, 0.92) 100%);
+  border-bottom: 1px solid rgba(82, 96, 196, 0.15);
+  box-shadow: 0 4px 30px rgba(82, 96, 196, 0.1);
 }
 
 /* Gradient text */
