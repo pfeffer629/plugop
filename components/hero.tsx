@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Play, Zap, Shield, TrendingUp } from "lucide-react";
 
@@ -84,43 +83,59 @@ export default function Hero() {
           {/* Right Content - Hero Visual */}
           <div className="flex-1 mt-16 lg:mt-0 animate-fade-up opacity-0 delay-300">
             <div className="relative">
-              {/* Main Card */}
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-primary/10 border border-border bg-card">
-                <Image
-                  src="/images/ev-chargers-garage.jpg"
-                  alt="Modern EV charging infrastructure"
-                  width={600}
-                  height={400}
-                  className="w-full h-auto object-cover"
-                  priority
-                />
-                
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
-                
-                {/* Bottom stats bar */}
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <div className="glass rounded-2xl p-4 flex items-center justify-between gap-4">
-                    <div className="flex items-center gap-3">
+              {/* Main Card - Stats Dashboard */}
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-primary/10 border border-primary/10 bg-gradient-to-br from-card via-card to-primary/5 p-8">
+                {/* Stats grid */}
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="rounded-2xl p-5 flex flex-col bg-gradient-to-br from-white/80 to-primary/5 dark:from-white/5 dark:to-primary/10 border border-primary/10">
+                    <div className="flex items-center gap-3 mb-3">
                       <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center">
                         <Zap className="w-5 h-5 text-green-500" />
                       </div>
-                      <div>
-                        <div className="text-sm font-semibold text-foreground">Active Charging</div>
-                        <div className="text-xs text-muted-foreground">12 vehicles connected</div>
+                      <span className="text-sm font-medium text-muted-foreground">Active Charging</span>
+                    </div>
+                    <div className="text-3xl font-bold text-foreground">12</div>
+                    <div className="text-xs text-muted-foreground mt-1">vehicles connected</div>
+                  </div>
+                  
+                  <div className="rounded-2xl p-5 flex flex-col bg-gradient-to-br from-white/80 to-accent/5 dark:from-white/5 dark:to-accent/10 border border-accent/10">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <Shield className="w-5 h-5 text-primary" />
                       </div>
+                      <span className="text-sm font-medium text-muted-foreground">Current Load</span>
                     </div>
-                    <div className="text-right">
-                      <div className="text-lg font-bold text-green-500">98.5 kW</div>
-                      <div className="text-xs text-muted-foreground">Current Load</div>
+                    <div className="text-3xl font-bold text-green-500">98.5 kW</div>
+                    <div className="text-xs text-muted-foreground mt-1">optimal distribution</div>
+                  </div>
+                  
+                  <div className="rounded-2xl p-5 flex flex-col bg-gradient-to-br from-white/80 to-primary/5 dark:from-white/5 dark:to-primary/10 border border-primary/10">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
+                        <TrendingUp className="w-5 h-5 text-accent" />
+                      </div>
+                      <span className="text-sm font-medium text-muted-foreground">Savings</span>
                     </div>
+                    <div className="text-3xl font-bold text-foreground">40%</div>
+                    <div className="text-xs text-muted-foreground mt-1">cost reduction</div>
+                  </div>
+                  
+                  <div className="rounded-2xl p-5 flex flex-col bg-gradient-to-br from-white/80 to-accent/5 dark:from-white/5 dark:to-accent/10 border border-accent/10">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center">
+                        <Zap className="w-5 h-5 text-blue-500" />
+                      </div>
+                      <span className="text-sm font-medium text-muted-foreground">Uptime</span>
+                    </div>
+                    <div className="text-3xl font-bold text-foreground">99.9%</div>
+                    <div className="text-xs text-muted-foreground mt-1">reliability</div>
                   </div>
                 </div>
               </div>
 
               {/* Floating Feature Cards */}
-              <div className="absolute -left-4 top-1/4 animate-float">
-                <div className="glass rounded-2xl p-4 shadow-lg flex items-center gap-3 max-w-[200px]">
+              <div className="absolute -left-4 top-1/4 animate-float hidden lg:block">
+                <div className="rounded-2xl p-4 shadow-lg flex items-center gap-3 max-w-[200px] bg-gradient-to-br from-white to-primary/10 dark:from-card dark:to-primary/20 border border-primary/20">
                   <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                     <Shield className="w-5 h-5 text-primary" />
                   </div>
@@ -131,14 +146,14 @@ export default function Hero() {
                 </div>
               </div>
 
-              <div className="absolute -right-4 top-1/2 animate-float delay-500">
-                <div className="glass rounded-2xl p-4 shadow-lg flex items-center gap-3 max-w-[200px]">
+              <div className="absolute -right-4 top-1/2 animate-float delay-500 hidden lg:block">
+                <div className="rounded-2xl p-4 shadow-lg flex items-center gap-3 max-w-[200px] bg-gradient-to-br from-white to-accent/10 dark:from-card dark:to-accent/20 border border-accent/20">
                   <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
                     <TrendingUp className="w-5 h-5 text-accent" />
                   </div>
                   <div>
-                    <div className="text-sm font-semibold text-foreground">40% Savings</div>
-                    <div className="text-xs text-muted-foreground">On installation</div>
+                    <div className="text-sm font-semibold text-foreground">500+ Sites</div>
+                    <div className="text-xs text-muted-foreground">Nationwide</div>
                   </div>
                 </div>
               </div>

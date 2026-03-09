@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { Zap, Users, Brain, ArrowRight, Check } from "lucide-react";
 
 const features = [
@@ -11,7 +10,6 @@ const features = [
     title: "Skip Expensive Upgrades",
     subtitle: "40% Cost Reduction",
     description: "Install several chargers on a single electric circuit. Our software optimally shifts power between each electric vehicle.",
-    image: "/images/ev-chargers-garage.jpg",
     benefits: ["No electrical panel upgrades", "Reduced installation time", "Lower infrastructure costs"],
     color: "primary",
   },
@@ -21,7 +19,6 @@ const features = [
     title: "User Experience Focused",
     subtitle: "No App Required",
     description: "Don't compromise user experience. PlugOp software transparently informs users of charging times without requiring an app.",
-    image: "/images/man-charging-ev.jpg",
     benefits: ["Plug & charge simplicity", "Real-time status display", "Seamless authentication"],
     color: "accent",
   },
@@ -31,7 +28,6 @@ const features = [
     title: "AI-Based Power Sharing",
     subtitle: "Smart Load Management",
     description: "Our AI-based algorithms learn user driving behavior to ensure the right electric vehicles are charged when they need it most.",
-    image: "/images/energy-management.jpg",
     benefits: ["Predictive charging", "Optimal energy distribution", "Peak demand management"],
     color: "primary",
   },
@@ -137,46 +133,37 @@ export default function Features() {
             })}
           </div>
 
-          {/* Right: Feature image */}
-          <div className={`lg:w-1/2 ${isInView ? "animate-fade-up opacity-0 delay-400" : "opacity-0"}`}>
-            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-card border border-border shadow-2xl shadow-primary/5">
-              {features.map((feature, index) => (
-                <div
-                  key={feature.id}
-                  className={`absolute inset-0 transition-all duration-700 ${
-                    activeFeature === index
-                      ? "opacity-100 scale-100"
-                      : "opacity-0 scale-105"
-                  }`}
-                >
-                  <Image
-                    src={feature.image}
-                    alt={feature.title}
-                    fill
-                    className="object-cover"
-                  />
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
+          {/* Right: Stats and CTA */}
+          <div className={`lg:w-1/2 flex flex-col justify-center ${isInView ? "animate-fade-up opacity-0 delay-400" : "opacity-0"}`}>
+            <div className="space-y-8">
+              {/* Key Stats */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="p-6 rounded-2xl bg-card border border-border">
+                  <div className="text-4xl font-bold text-primary mb-2">40%</div>
+                  <div className="text-sm text-muted-foreground">Cost Reduction</div>
                 </div>
-              ))}
+                <div className="p-6 rounded-2xl bg-card border border-border">
+                  <div className="text-4xl font-bold text-accent mb-2">500+</div>
+                  <div className="text-sm text-muted-foreground">Properties Served</div>
+                </div>
+                <div className="p-6 rounded-2xl bg-card border border-border">
+                  <div className="text-4xl font-bold text-foreground mb-2">99.9%</div>
+                  <div className="text-sm text-muted-foreground">Uptime Guarantee</div>
+                </div>
+                <div className="p-6 rounded-2xl bg-card border border-border">
+                  <div className="text-4xl font-bold text-foreground mb-2">24/7</div>
+                  <div className="text-sm text-muted-foreground">Support Available</div>
+                </div>
+              </div>
               
-              {/* Progress indicator */}
-              <div className="absolute bottom-6 left-6 right-6">
-                <div className="flex gap-2">
-                  {features.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setActiveFeature(index)}
-                      className="flex-1 h-1 rounded-full overflow-hidden bg-foreground/20"
-                    >
-                      <div 
-                        className={`h-full bg-primary transition-all duration-500 ${
-                          activeFeature === index ? "w-full" : "w-0"
-                        }`}
-                      />
-                    </button>
-                  ))}
-                </div>
+              {/* CTA */}
+              <div className="p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20">
+                <h3 className="text-xl font-semibold text-foreground mb-2">Ready to reduce costs?</h3>
+                <p className="text-muted-foreground mb-4">Get a customized quote for your property today.</p>
+                <a href="#contact" className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white">
+                  <span>Get Started</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
               </div>
             </div>
           </div>

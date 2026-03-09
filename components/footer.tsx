@@ -43,7 +43,7 @@ export default function Footer() {
                 alt="PlugOp"
                 width={140}
                 height={40}
-                className="h-10 transition-transform duration-300 group-hover:scale-105"
+                className="h-10 transition-transform duration-300 group-hover:scale-105 dark:brightness-0 dark:invert"
                 style={{ width: "auto", height: "40px" }}
               />
             </Link>

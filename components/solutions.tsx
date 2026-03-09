@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import {
   Building2,
   Hotel,
@@ -20,7 +19,6 @@ const solutions = [
     icon: Building2,
     title: "Apartment Complexes",
     description: "Install cost-effective EV charging across your apartment community with AI-powered energy management.",
-    image: "/images/ev-charger-hilliard.jpg",
     features: [
       "Maximize chargers per circuit",
       "Resident billing integration",
@@ -33,7 +31,6 @@ const solutions = [
     icon: Hotel,
     title: "Hotels & Resorts",
     description: "Attract EV-driving guests with reliable charging amenities and seamless automated billing.",
-    image: "/images/ev-chargers-garage.jpg",
     features: [
       "Guest charging integration",
       "Automated billing systems",
@@ -46,7 +43,6 @@ const solutions = [
     icon: Briefcase,
     title: "Corporate Facilities",
     description: "Offer EV charging as a workplace benefit with efficient employee charging management.",
-    image: "/images/man-charging-ev.jpg",
     features: [
       "Employee scheduling",
       "Power allocation control",
@@ -59,7 +55,6 @@ const solutions = [
     icon: MapPin,
     title: "Public Charging",
     description: "Deploy public stations at retail locations with integrated payment processing.",
-    image: "/images/energy-management.jpg",
     features: [
       "Payment processing built-in",
       "Load balancing automation",
@@ -72,7 +67,6 @@ const solutions = [
     icon: Truck,
     title: "Fleet Charging",
     description: "Keep your fleet vehicles charged and ready with AI-prioritized departure scheduling.",
-    image: "/images/hero-bg.jpg",
     features: [
       "Departure schedule priority",
       "Route optimization ready",
@@ -153,100 +147,67 @@ export default function Solutions() {
         {/* Solution Content */}
         <div className={`${isInView ? "animate-fade-up opacity-0 delay-200" : "opacity-0"}`}>
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            {/* Image */}
+            {/* Feature Visualization */}
             <div className="relative order-2 lg:order-1">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-card border border-border shadow-2xl">
-                {solutions.map((solution) => (
-                  <div
-                    key={solution.id}
-                    className={`absolute inset-0 transition-all duration-700 ease-out ${
-                      active === solution.id
-                        ? "opacity-100 scale-100"
-                        : "opacity-0 scale-110"
-                    }`}
-                  >
-                    <Image
-                      src={solution.image}
-                      alt={solution.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                ))}
-                
-                {/* Floating badge */}
-                <div className="absolute bottom-4 left-4 right-4">
-                  <div className="glass rounded-xl p-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-foreground">{current.title}</span>
-                      <span className="px-2 py-1 text-xs font-semibold bg-primary/10 text-primary rounded-full">
-                        Active
-                      </span>
+              <div className="relative rounded-3xl overflow-hidden bg-card border border-border shadow-2xl p-8">
+                {solutions.map((solution) => {
+                  const Icon = solution.icon;
+                  return (
+                    <div
+                      key={solution.id}
+                      className={`transition-all duration-700 ease-out ${
+                        active === solution.id
+                          ? "opacity-100"
+                          : "opacity-0 absolute inset-0 pointer-events-none"
+                      }`}
+                    >
+                      {active === solution.id && (
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-3">
+                            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                              <Icon className="w-6 h-6 text-primary" />
+                            </div>
+                            <div>
+                              <span className="text-xs font-semibold text-primary uppercase tracking-wide">{current.label}</span>
+                              <h3 className="text-xl font-bold text-foreground">{solution.title}</h3>
+                            </div>
+                          </div>
+                          <p className="text-muted-foreground leading-relaxed">{solution.description}</p>
+                          <div className="grid gap-2">
+                            {solution.features.map((feature, i) => (
+                              <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-secondary/50">
+                                <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                                <span className="text-foreground font-medium">{feature}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  </div>
-                </div>
+                  );
+                })}
               </div>
               
               {/* Decorative elements */}
               <div className="absolute -z-10 -bottom-6 -right-6 w-full h-full rounded-3xl bg-primary/5 border border-primary/10" />
             </div>
 
-            {/* Content */}
-            <div className="order-1 lg:order-2">
-              <div className="space-y-6">
-                {solutions.map((solution) => {
-                  const Icon = solution.icon;
-                  const isActive = active === solution.id;
-                  
-                  return (
-                    <div
-                      key={solution.id}
-                      className={`transition-all duration-500 ${
-                        isActive ? "opacity-100" : "opacity-0 absolute pointer-events-none"
-                      }`}
-                    >
-                      {isActive && (
-                        <>
-                          <div className="flex items-center gap-3 mb-4">
-                            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                              <Icon className="w-6 h-6 text-primary" />
-                            </div>
-                            <h3 className="text-2xl lg:text-3xl font-bold text-foreground">
-                              {solution.title}
-                            </h3>
-                          </div>
-                          
-                          <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                            {solution.description}
-                          </p>
-                          
-                          <div className="space-y-4 mb-8">
-                            {solution.features.map((feature, i) => (
-                              <div
-                                key={i}
-                                className="flex items-center gap-3 animate-fade-up opacity-0"
-                                style={{ animationDelay: `${i * 100}ms` }}
-                              >
-                                <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                                  <Check className="w-3.5 h-3.5 text-primary" />
-                                </div>
-                                <span className="text-foreground font-medium">{feature}</span>
-                              </div>
-                            ))}
-                          </div>
-                          
-                          <Link
-                            href="#contact"
-                            className="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white group"
-                          >
-                            <span>Explore This Solution</span>
-                            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                          </Link>
-                        </>
-                      )}
-                    </div>
-                  );
-                })}
+            {/* CTA */}
+            <div className="order-1 lg:order-2 flex flex-col justify-center">
+              <div className="text-center lg:text-left">
+                <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-4">
+                  Ready to get started?
+                </h3>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                  Contact us to learn how PlugOp can transform your property with smart EV charging infrastructure.
+                </p>
+                <Link
+                  href="#contact"
+                  className="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white group"
+                >
+                  <span>Get a Free Quote</span>
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
               </div>
             </div>
           </div>

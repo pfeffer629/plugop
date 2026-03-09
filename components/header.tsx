@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight, Sun, Moon } from "lucide-react";
+import { useTheme } from "./theme-provider";
 
 const navLinks = [
   { href: "#features", label: "Features" },
@@ -15,6 +16,7 @@ const navLinks = [
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,22 +30,22 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "glass py-3 shadow-sm"
-          : "bg-transparent py-5"
+          ? "header-scrolled py-3"
+          : "header-initial py-5"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
         {/* Logo */}
         <Link 
           href="/" 
-          className="relative group"
+          className="relative group flex items-center"
         >
           <Image
             src="/images/logo-full.svg"
             alt="PlugOp"
             width={140}
             height={40}
-            className="h-9 transition-transform duration-300 group-hover:scale-105"
+            className="h-9"
             style={{ width: "auto", height: "36px" }}
             priority
           />
@@ -63,8 +65,20 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* CTA Button */}
-        <div className="hidden lg:flex items-center gap-4">
+        {/* CTA Button & Theme Toggle */}
+        <div className="hidden lg:flex items-center gap-3">
+          <button
+            onClick={toggleTheme}
+            className="relative w-10 h-10 flex items-center justify-center rounded-full bg-secondary/50 text-foreground transition-all duration-300 hover:bg-secondary focus-ring"
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            <span className={`absolute transition-all duration-300 ${theme === "dark" ? "opacity-0 rotate-90 scale-0" : "opacity-100 rotate-0 scale-100"}`}>
+              <Sun className="w-5 h-5" />
+            </span>
+            <span className={`absolute transition-all duration-300 ${theme === "dark" ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-0"}`}>
+              <Moon className="w-5 h-5" />
+            </span>
+          </button>
           <Link
             href="#contact"
             className="btn-primary px-5 py-2.5 rounded-full text-sm font-semibold text-white focus-ring"
@@ -76,19 +90,33 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden relative w-10 h-10 flex items-center justify-center rounded-full bg-secondary/50 text-foreground transition-colors hover:bg-secondary focus-ring"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-        >
-          <span className={`absolute transition-all duration-300 ${mobileOpen ? "opacity-0 rotate-90" : "opacity-100 rotate-0"}`}>
-            <Menu className="w-5 h-5" />
-          </span>
-          <span className={`absolute transition-all duration-300 ${mobileOpen ? "opacity-100 rotate-0" : "opacity-0 -rotate-90"}`}>
-            <X className="w-5 h-5" />
-          </span>
-        </button>
+        {/* Mobile: Theme Toggle & Menu Button */}
+        <div className="lg:hidden flex items-center gap-2">
+          <button
+            onClick={toggleTheme}
+            className="relative w-10 h-10 flex items-center justify-center rounded-full bg-secondary/50 text-foreground transition-all duration-300 hover:bg-secondary focus-ring"
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            <span className={`absolute transition-all duration-300 ${theme === "dark" ? "opacity-0 rotate-90 scale-0" : "opacity-100 rotate-0 scale-100"}`}>
+              <Sun className="w-5 h-5" />
+            </span>
+            <span className={`absolute transition-all duration-300 ${theme === "dark" ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-0"}`}>
+              <Moon className="w-5 h-5" />
+            </span>
+          </button>
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="relative w-10 h-10 flex items-center justify-center rounded-full bg-secondary/50 text-foreground transition-colors hover:bg-secondary focus-ring"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          >
+            <span className={`absolute transition-all duration-300 ${mobileOpen ? "opacity-0 rotate-90" : "opacity-100 rotate-0"}`}>
+              <Menu className="w-5 h-5" />
+            </span>
+            <span className={`absolute transition-all duration-300 ${mobileOpen ? "opacity-100 rotate-0" : "opacity-0 -rotate-90"}`}>
+              <X className="w-5 h-5" />
+            </span>
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -99,14 +127,14 @@ export default function Header() {
             : "opacity-0 -translate-y-4 pointer-events-none"
         }`}
       >
-        <div className="glass mx-4 mt-2 p-6 rounded-2xl shadow-xl">
+        <div className="mx-4 mt-2 p-6 rounded-2xl shadow-xl bg-card border border-border">
           <nav className="flex flex-col gap-1">
             {navLinks.map((link, index) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="px-4 py-3 text-base font-medium text-foreground/80 rounded-xl transition-all duration-300 hover:bg-primary/5 hover:text-foreground hover:pl-6"
+                className="px-4 py-3 text-base font-medium text-foreground rounded-xl transition-all duration-300 hover:bg-primary/10 hover:pl-6"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 {link.label}
