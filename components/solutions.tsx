@@ -192,62 +192,22 @@ export default function Solutions() {
               <div className="absolute -z-10 -bottom-6 -right-6 w-full h-full rounded-3xl bg-primary/5 border border-primary/10" />
             </div>
 
-            {/* Content */}
-            <div className="order-1 lg:order-2">
-              <div className="space-y-6">
-                {solutions.map((solution) => {
-                  const Icon = solution.icon;
-                  const isActive = active === solution.id;
-                  
-                  return (
-                    <div
-                      key={solution.id}
-                      className={`transition-all duration-500 ${
-                        isActive ? "opacity-100" : "opacity-0 absolute pointer-events-none"
-                      }`}
-                    >
-                      {isActive && (
-                        <>
-                          <div className="flex items-center gap-3 mb-4">
-                            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                              <Icon className="w-6 h-6 text-primary" />
-                            </div>
-                            <h3 className="text-2xl lg:text-3xl font-bold text-foreground">
-                              {solution.title}
-                            </h3>
-                          </div>
-                          
-                          <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                            {solution.description}
-                          </p>
-                          
-                          <div className="space-y-4 mb-8">
-                            {solution.features.map((feature, i) => (
-                              <div
-                                key={i}
-                                className="flex items-center gap-3 animate-fade-up opacity-0"
-                                style={{ animationDelay: `${i * 100}ms` }}
-                              >
-                                <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                                  <Check className="w-3.5 h-3.5 text-primary" />
-                                </div>
-                                <span className="text-foreground font-medium">{feature}</span>
-                              </div>
-                            ))}
-                          </div>
-                          
-                          <Link
-                            href="#contact"
-                            className="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white group"
-                          >
-                            <span>Explore This Solution</span>
-                            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                          </Link>
-                        </>
-                      )}
-                    </div>
-                  );
-                })}
+            {/* CTA */}
+            <div className="order-1 lg:order-2 flex flex-col justify-center">
+              <div className="text-center lg:text-left">
+                <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-4">
+                  Ready to get started?
+                </h3>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                  Contact us to learn how PlugOp can transform your property with smart EV charging infrastructure.
+                </p>
+                <Link
+                  href="#contact"
+                  className="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white group"
+                >
+                  <span>Get a Free Quote</span>
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
               </div>
             </div>
           </div>
