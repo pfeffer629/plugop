@@ -90,19 +90,33 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden relative w-10 h-10 flex items-center justify-center rounded-full bg-secondary/50 text-foreground transition-colors hover:bg-secondary focus-ring"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-        >
-          <span className={`absolute transition-all duration-300 ${mobileOpen ? "opacity-0 rotate-90" : "opacity-100 rotate-0"}`}>
-            <Menu className="w-5 h-5" />
-          </span>
-          <span className={`absolute transition-all duration-300 ${mobileOpen ? "opacity-100 rotate-0" : "opacity-0 -rotate-90"}`}>
-            <X className="w-5 h-5" />
-          </span>
-        </button>
+        {/* Mobile: Theme Toggle & Menu Button */}
+        <div className="lg:hidden flex items-center gap-2">
+          <button
+            onClick={toggleTheme}
+            className="relative w-10 h-10 flex items-center justify-center rounded-full bg-secondary/50 text-foreground transition-all duration-300 hover:bg-secondary focus-ring"
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            <span className={`absolute transition-all duration-300 ${theme === "dark" ? "opacity-0 rotate-90 scale-0" : "opacity-100 rotate-0 scale-100"}`}>
+              <Sun className="w-5 h-5" />
+            </span>
+            <span className={`absolute transition-all duration-300 ${theme === "dark" ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-0"}`}>
+              <Moon className="w-5 h-5" />
+            </span>
+          </button>
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="relative w-10 h-10 flex items-center justify-center rounded-full bg-secondary/50 text-foreground transition-colors hover:bg-secondary focus-ring"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          >
+            <span className={`absolute transition-all duration-300 ${mobileOpen ? "opacity-0 rotate-90" : "opacity-100 rotate-0"}`}>
+              <Menu className="w-5 h-5" />
+            </span>
+            <span className={`absolute transition-all duration-300 ${mobileOpen ? "opacity-100 rotate-0" : "opacity-0 -rotate-90"}`}>
+              <X className="w-5 h-5" />
+            </span>
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -127,18 +141,11 @@ export default function Header() {
               </Link>
             ))}
           </nav>
-          <div className="mt-4 pt-4 border-t border-border flex items-center gap-3">
-            <button
-              onClick={toggleTheme}
-              className="w-12 h-12 flex items-center justify-center rounded-xl bg-secondary text-foreground transition-all duration-300 hover:bg-secondary/80"
-              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-            >
-              {theme === "dark" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
-            </button>
+          <div className="mt-4 pt-4 border-t border-border">
             <Link
               href="#contact"
               onClick={() => setMobileOpen(false)}
-              className="btn-primary flex-1 px-5 py-3 rounded-xl text-center text-sm font-semibold text-white block"
+              className="btn-primary w-full px-5 py-3 rounded-xl text-center text-sm font-semibold text-white block"
             >
               <span>Get Started</span>
             </Link>
