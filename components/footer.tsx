@@ -43,7 +43,8 @@ export default function Footer() {
                 alt="PlugOp"
                 width={140}
                 height={40}
-                className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+                className="h-10 transition-transform duration-300 group-hover:scale-105"
+                style={{ width: "auto", height: "40px" }}
               />
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground max-w-xs">
