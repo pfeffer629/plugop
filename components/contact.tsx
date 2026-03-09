@@ -40,23 +40,23 @@ export default function Contact() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="contact" className="relative py-24 lg:py-32 bg-background overflow-hidden">
+    <section ref={sectionRef} id="contact" className="relative py-16 lg:py-20 bg-background overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 radial-gradient-bottom" />
       
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         {/* Header */}
-        <div className={`max-w-3xl mx-auto text-center mb-16 ${isInView ? "animate-fade-up opacity-0" : "opacity-0"}`}>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/5 border border-accent/10 mb-6">
+        <div className={`max-w-3xl mx-auto text-center mb-10 ${isInView ? "animate-fade-up opacity-0" : "opacity-0"}`}>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/5 border border-accent/10 mb-4">
             <Mail className="w-4 h-4 text-accent" />
             <span className="text-sm font-medium text-accent">Get Started</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
             Build a Scalable{" "}
             <span className="gradient-text">Charging Program</span>
           </h2>
-          <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-            Schedule a 30-minute, no obligation call with our team to discuss your property&apos;s needs.
+          <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+            Schedule a 30-minute call to discuss your property&apos;s needs.
           </p>
         </div>
 
@@ -66,13 +66,13 @@ export default function Contact() {
             {/* Left side - Info */}
             <div className="lg:col-span-2 relative bg-gradient-to-br from-[#272B41] via-[#272B41] to-[#5260C4]">
               {/* Content */}
-              <div className="relative z-10 p-8 lg:p-10 h-full flex flex-col">
-                <h3 className="text-2xl font-bold text-white mb-6">
+              <div className="relative z-10 p-6 lg:p-8 h-full flex flex-col">
+                <h3 className="text-xl font-bold text-white mb-4">
                   Why partner with PlugOp?
                 </h3>
                 
                 {/* Benefits */}
-                <div className="space-y-4 mb-8">
+                <div className="space-y-3 mb-6">
                   {benefits.map((benefit, index) => (
                     <div 
                       key={index} 
@@ -87,7 +87,7 @@ export default function Contact() {
                 </div>
                 
                 {/* Contact info */}
-                <div className="mt-auto space-y-4 pt-8 border-t border-white/10">
+                <div className="mt-auto space-y-3 pt-6 border-t border-white/10">
                   {contactInfo.map((info, index) => {
                     const Icon = info.icon;
                     return (
@@ -107,8 +107,8 @@ export default function Contact() {
             </div>
 
             {/* Right side - Form */}
-            <div className="lg:col-span-3 p-8 lg:p-10">
-              <div className="flex items-center gap-2 mb-6">
+            <div className="lg:col-span-3 p-6 lg:p-8">
+              <div className="flex items-center gap-2 mb-4">
                 <ArrowRight className="w-5 h-5 text-primary" />
                 <span className="text-sm font-medium text-muted-foreground">Fill out the form below</span>
               </div>

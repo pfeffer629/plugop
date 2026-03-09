@@ -23,7 +23,6 @@ const features = [
 
 export default function UserInterface() {
   const [isInView, setIsInView] = useState(false);
-  const [activeFeature, setActiveFeature] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -41,14 +40,6 @@ export default function UserInterface() {
     }
 
     return () => observer.disconnect();
-  }, []);
-
-  // Auto-cycle through features
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveFeature((prev) => (prev + 1) % features.length);
-    }, 4000);
-    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -147,22 +138,14 @@ export default function UserInterface() {
             <div className="mt-10 space-y-4">
               {features.map((feature, index) => {
                 const Icon = feature.icon;
-                const isActive = activeFeature === index;
                 
                 return (
-                  <button
+                  <div
                     key={index}
-                    onClick={() => setActiveFeature(index)}
-                    className={`w-full text-left p-5 rounded-2xl border transition-all duration-300 ${
-                      isActive
-                        ? "bg-card border-primary/20 shadow-lg shadow-primary/5"
-                        : "bg-transparent border-border hover:bg-card/50"
-                    }`}
+                    className="p-5 rounded-2xl border border-border bg-card"
                   >
                     <div className="flex items-start gap-4">
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
-                        isActive ? "bg-primary text-white" : "bg-secondary text-foreground"
-                      }`}>
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-primary/10 text-primary">
                         <Icon className="w-5 h-5" />
                       </div>
                       <div className="flex-1">
@@ -172,7 +155,7 @@ export default function UserInterface() {
                         </p>
                       </div>
                     </div>
-                  </button>
+                  </div>
                 );
               })}
             </div>
