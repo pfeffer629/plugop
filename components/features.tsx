@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { Zap, Users, Brain, ArrowRight, Check } from "lucide-react";
 
 const features = [
@@ -11,7 +10,6 @@ const features = [
     title: "Skip Expensive Upgrades",
     subtitle: "40% Cost Reduction",
     description: "Install several chargers on a single electric circuit. Our software optimally shifts power between each electric vehicle.",
-    image: "/images/ev-chargers-garage.jpg",
     benefits: ["No electrical panel upgrades", "Reduced installation time", "Lower infrastructure costs"],
     color: "primary",
   },
@@ -21,7 +19,6 @@ const features = [
     title: "User Experience Focused",
     subtitle: "No App Required",
     description: "Don't compromise user experience. PlugOp software transparently informs users of charging times without requiring an app.",
-    image: "/images/man-charging-ev.jpg",
     benefits: ["Plug & charge simplicity", "Real-time status display", "Seamless authentication"],
     color: "accent",
   },
@@ -31,7 +28,6 @@ const features = [
     title: "AI-Based Power Sharing",
     subtitle: "Smart Load Management",
     description: "Our AI-based algorithms learn user driving behavior to ensure the right electric vehicles are charged when they need it most.",
-    image: "/images/energy-management.jpg",
     benefits: ["Predictive charging", "Optimal energy distribution", "Peak demand management"],
     color: "primary",
   },
@@ -137,37 +133,49 @@ export default function Features() {
             })}
           </div>
 
-          {/* Right: Feature image */}
+          {/* Right: Feature visualization */}
           <div className={`lg:w-1/2 ${isInView ? "animate-fade-up opacity-0 delay-400" : "opacity-0"}`}>
-            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-card border border-border shadow-2xl shadow-primary/5">
-              {features.map((feature, index) => (
-                <div
-                  key={feature.id}
-                  className={`absolute inset-0 transition-all duration-700 ${
-                    activeFeature === index
-                      ? "opacity-100 scale-100"
-                      : "opacity-0 scale-105"
-                  }`}
-                >
-                  <Image
-                    src={feature.image}
-                    alt={feature.title}
-                    fill
-                    className="object-cover"
-                  />
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
-                </div>
-              ))}
+            <div className="relative rounded-3xl overflow-hidden bg-card border border-border shadow-2xl shadow-primary/5 p-8">
+              {features.map((feature, index) => {
+                const Icon = feature.icon;
+                return (
+                  <div
+                    key={feature.id}
+                    className={`transition-all duration-700 ${
+                      activeFeature === index
+                        ? "opacity-100"
+                        : "opacity-0 absolute inset-0 pointer-events-none"
+                    }`}
+                  >
+                    {activeFeature === index && (
+                      <div className="space-y-6">
+                        <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+                          <Icon className="w-8 h-8 text-primary" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-foreground">{feature.title}</h3>
+                        <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+                        <div className="grid grid-cols-1 gap-3 pt-4">
+                          {feature.benefits.map((benefit, i) => (
+                            <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-secondary/50">
+                              <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                              <span className="text-foreground font-medium">{benefit}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
               
               {/* Progress indicator */}
-              <div className="absolute bottom-6 left-6 right-6">
+              <div className="mt-8">
                 <div className="flex gap-2">
                   {features.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setActiveFeature(index)}
-                      className="flex-1 h-1 rounded-full overflow-hidden bg-foreground/20"
+                      className="flex-1 h-1.5 rounded-full overflow-hidden bg-border"
                     >
                       <div 
                         className={`h-full bg-primary transition-all duration-500 ${

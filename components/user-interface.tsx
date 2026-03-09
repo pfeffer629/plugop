@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { Monitor, Smartphone, BarChart3, ArrowRight, Sparkles } from "lucide-react";
 
 const features = [
@@ -59,49 +58,67 @@ export default function UserInterface() {
       
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Image with floating elements */}
+          {/* Left: Dashboard mockup */}
           <div className={`relative ${isInView ? "animate-fade-up opacity-0" : "opacity-0"}`}>
-            {/* Main dashboard image */}
-            <div className="relative rounded-3xl overflow-hidden bg-card border border-border shadow-2xl shadow-primary/5">
-              <Image
-                src="/images/energy-management.jpg"
-                alt="PlugOp energy management dashboard interface"
-                width={600}
-                height={400}
-                className="w-full h-auto object-cover"
-              />
-              
-              {/* Overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-accent/10 pointer-events-none" />
-            </div>
-
-            {/* Floating card 1 */}
-            <div className="absolute -top-4 -right-4 lg:-right-8 animate-float">
-              <div className="glass rounded-2xl p-4 shadow-xl max-w-[180px]">
+            {/* Main dashboard visualization */}
+            <div className="relative rounded-3xl overflow-hidden bg-card border border-border shadow-2xl shadow-primary/5 p-6">
+              {/* Header */}
+              <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center">
-                    <Sparkles className="w-5 h-5 text-green-500" />
+                  <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+                    <Monitor className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <div className="text-xs text-muted-foreground">Savings</div>
-                    <div className="text-lg font-bold text-green-500">$2,450</div>
+                    <div className="text-sm font-semibold text-foreground">Property Dashboard</div>
+                    <div className="text-xs text-muted-foreground">Real-time monitoring</div>
                   </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                  <span className="text-xs text-muted-foreground">Live</span>
                 </div>
               </div>
-            </div>
-
-            {/* Floating card 2 */}
-            <div className="absolute -bottom-4 -left-4 lg:-left-8 animate-float delay-300">
-              <div className="glass rounded-2xl p-4 shadow-xl">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <BarChart3 className="w-5 h-5 text-primary" />
+              
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="glass rounded-xl p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Sparkles className="w-4 h-4 text-green-500" />
+                    <span className="text-xs text-muted-foreground">Savings</span>
                   </div>
-                  <div>
-                    <div className="text-xs text-muted-foreground">This Month</div>
-                    <div className="text-lg font-bold text-foreground">847 kWh</div>
-                  </div>
+                  <div className="text-2xl font-bold text-green-500">$2,450</div>
+                  <div className="text-xs text-muted-foreground">this month</div>
                 </div>
+                <div className="glass rounded-xl p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <BarChart3 className="w-4 h-4 text-primary" />
+                    <span className="text-xs text-muted-foreground">Energy</span>
+                  </div>
+                  <div className="text-2xl font-bold text-foreground">847 kWh</div>
+                  <div className="text-xs text-muted-foreground">delivered</div>
+                </div>
+              </div>
+              
+              {/* Charger Status */}
+              <div className="space-y-3">
+                <div className="text-sm font-medium text-foreground">Active Chargers</div>
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-secondary/50">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center">
+                        <Smartphone className="w-4 h-4 text-green-500" />
+                      </div>
+                      <div>
+                        <div className="text-sm font-medium text-foreground">Charger {i}</div>
+                        <div className="text-xs text-muted-foreground">Unit {100 + i}</div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-sm font-semibold text-green-500">{85 + i * 3}%</div>
+                      <div className="text-xs text-muted-foreground">{30 - i * 5} min left</div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
             

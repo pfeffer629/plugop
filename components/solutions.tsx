@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import {
   Building2,
   Hotel,
@@ -20,7 +19,6 @@ const solutions = [
     icon: Building2,
     title: "Apartment Complexes",
     description: "Install cost-effective EV charging across your apartment community with AI-powered energy management.",
-    image: "/images/ev-charger-hilliard.jpg",
     features: [
       "Maximize chargers per circuit",
       "Resident billing integration",
@@ -33,7 +31,6 @@ const solutions = [
     icon: Hotel,
     title: "Hotels & Resorts",
     description: "Attract EV-driving guests with reliable charging amenities and seamless automated billing.",
-    image: "/images/ev-chargers-garage.jpg",
     features: [
       "Guest charging integration",
       "Automated billing systems",
@@ -46,7 +43,6 @@ const solutions = [
     icon: Briefcase,
     title: "Corporate Facilities",
     description: "Offer EV charging as a workplace benefit with efficient employee charging management.",
-    image: "/images/man-charging-ev.jpg",
     features: [
       "Employee scheduling",
       "Power allocation control",
@@ -59,7 +55,6 @@ const solutions = [
     icon: MapPin,
     title: "Public Charging",
     description: "Deploy public stations at retail locations with integrated payment processing.",
-    image: "/images/energy-management.jpg",
     features: [
       "Payment processing built-in",
       "Load balancing automation",
@@ -72,7 +67,6 @@ const solutions = [
     icon: Truck,
     title: "Fleet Charging",
     description: "Keep your fleet vehicles charged and ready with AI-prioritized departure scheduling.",
-    image: "/images/hero-bg.jpg",
     features: [
       "Departure schedule priority",
       "Route optimization ready",
@@ -153,38 +147,45 @@ export default function Solutions() {
         {/* Solution Content */}
         <div className={`${isInView ? "animate-fade-up opacity-0 delay-200" : "opacity-0"}`}>
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            {/* Image */}
+            {/* Feature Visualization */}
             <div className="relative order-2 lg:order-1">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-card border border-border shadow-2xl">
-                {solutions.map((solution) => (
-                  <div
-                    key={solution.id}
-                    className={`absolute inset-0 transition-all duration-700 ease-out ${
-                      active === solution.id
-                        ? "opacity-100 scale-100"
-                        : "opacity-0 scale-110"
-                    }`}
-                  >
-                    <Image
-                      src={solution.image}
-                      alt={solution.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                ))}
-                
-                {/* Floating badge */}
-                <div className="absolute bottom-4 left-4 right-4">
-                  <div className="glass rounded-xl p-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-foreground">{current.title}</span>
-                      <span className="px-2 py-1 text-xs font-semibold bg-primary/10 text-primary rounded-full">
-                        Active
-                      </span>
+              <div className="relative rounded-3xl overflow-hidden bg-card border border-border shadow-2xl p-8">
+                {solutions.map((solution) => {
+                  const Icon = solution.icon;
+                  return (
+                    <div
+                      key={solution.id}
+                      className={`transition-all duration-700 ease-out ${
+                        active === solution.id
+                          ? "opacity-100"
+                          : "opacity-0 absolute inset-0 pointer-events-none"
+                      }`}
+                    >
+                      {active === solution.id && (
+                        <div className="space-y-6">
+                          <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center">
+                            <Icon className="w-10 h-10 text-primary" />
+                          </div>
+                          <div>
+                            <span className="px-3 py-1 text-xs font-semibold bg-primary/10 text-primary rounded-full">
+                              {current.label}
+                            </span>
+                          </div>
+                          <h3 className="text-2xl font-bold text-foreground">{solution.title}</h3>
+                          <p className="text-muted-foreground leading-relaxed">{solution.description}</p>
+                          <div className="grid gap-3 pt-2">
+                            {solution.features.map((feature, i) => (
+                              <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-secondary/50">
+                                <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                                <span className="text-foreground font-medium">{feature}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  </div>
-                </div>
+                  );
+                })}
               </div>
               
               {/* Decorative elements */}

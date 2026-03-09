@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import ContactForm from "./contact-form";
 import { Mail, Phone, MapPin, Clock, ArrowRight, CheckCircle2 } from "lucide-react";
 
@@ -65,18 +64,7 @@ export default function Contact() {
         <div className={`${isInView ? "animate-fade-up opacity-0 delay-200" : "opacity-0"}`}>
           <div className="grid lg:grid-cols-5 gap-8 lg:gap-0 overflow-hidden rounded-3xl border border-border bg-card shadow-2xl shadow-primary/5">
             {/* Left side - Info */}
-            <div className="lg:col-span-2 relative">
-              {/* Background image */}
-              <div className="absolute inset-0">
-                <Image
-                  src="/images/ev-charger-hilliard.jpg"
-                  alt="EV charger installation"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-[#272B41]/95 via-[#272B41]/90 to-[#5260C4]/80" />
-              </div>
-              
+            <div className="lg:col-span-2 relative bg-gradient-to-br from-[#272B41] via-[#272B41] to-[#5260C4]">
               {/* Content */}
               <div className="relative z-10 p-8 lg:p-10 h-full flex flex-col">
                 <h3 className="text-2xl font-bold text-white mb-6">
