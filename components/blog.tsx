@@ -2,12 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
 
 const posts = [
   {
     title: "Unlock EV Charging Tax Credits for Commercial Properties in 2025",
     excerpt: "Learn how to take advantage of federal and state incentives to offset your EV infrastructure costs.",
+    image: "/images/blog-tax-credits.jpg",
     category: "Tax Credits",
     date: "Mar 15, 2025",
     readTime: "5 min read",
@@ -16,6 +18,7 @@ const posts = [
   {
     title: "Is Your Project Ready for EV Mandates in 2025?",
     excerpt: "New building codes require EV-ready infrastructure. Here's what property developers need to know.",
+    image: "/images/blog-mandates.jpg",
     category: "Regulations",
     date: "Mar 10, 2025",
     readTime: "4 min read",
@@ -24,6 +27,7 @@ const posts = [
   {
     title: "Scalable EV Charging Programs for Apartments",
     excerpt: "How to design an EV charging program that grows with your residents' needs.",
+    image: "/images/blog-scalable.jpg",
     category: "Best Practices",
     date: "Mar 5, 2025",
     readTime: "6 min read",
@@ -90,11 +94,23 @@ export default function Blog() {
               className={`group premium-card overflow-hidden ${isInView ? "animate-fade-up opacity-0" : "opacity-0"}`}
               style={{ animationDelay: `${(index + 1) * 100}ms` }}
             >
-              {/* Category header */}
-              <div className="p-6 pb-0">
-                <span className="px-3 py-1.5 text-xs font-semibold bg-primary/10 text-primary rounded-full">
-                  {post.category}
-                </span>
+              {/* Image */}
+              <div className="relative h-52 overflow-hidden">
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent opacity-60" />
+                
+                {/* Category badge */}
+                <div className="absolute top-4 left-4">
+                  <span className="px-3 py-1.5 text-xs font-semibold bg-white/90 backdrop-blur-sm text-foreground rounded-full">
+                    {post.category}
+                  </span>
+                </div>
               </div>
               
               {/* Content */}
