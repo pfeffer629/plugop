@@ -1,16 +1,17 @@
 "use client";
 
+import Image from "next/image";
+
 const partners = [
-  "Hilliard",
-  "Polaris",
-  "Lifestyle Communities",
-  "UDR",
-  "ZRS Management",
-  "Hawthorne",
-  "Oakwood",
-  "Avenue Partners",
-  "Brownstone",
-  "Lincoln Property",
+  { name: "Hilliard", logo: "/images/hilliard.avif" },
+  { name: "Polaris", logo: "/images/polaris.avif" },
+  { name: "Lifestyle Communities", logo: "/images/lifestyle.avif" },
+  { name: "UDR", logo: "/images/udr.avif" },
+  { name: "ZRS Management", logo: "/images/zrs.avif" },
+  { name: "Hawthorne", logo: "/images/hawthorne.avif" },
+  { name: "Oakwood", logo: "/images/oakwood.avif" },
+  { name: "Avenue Partners", logo: "/images/avenue.avif" },
+  { name: "Brownstone", logo: "/images/brownstone.webp" },
 ];
 
 export default function LogoMarquee() {
@@ -27,15 +28,20 @@ export default function LogoMarquee() {
       </div>
       
       <div className="relative">
-        <div className="animate-marquee flex w-max gap-8">
-          {[...partners, ...partners, ...partners].map((name, i) => (
+        <div className="animate-marquee flex w-max gap-12 items-center">
+          {[...partners, ...partners, ...partners].map((partner, i) => (
             <div
-              key={`${name}-${i}`}
-              className="group flex items-center justify-center px-8 py-4 rounded-xl bg-card border border-border hover:border-primary/20 hover:shadow-md transition-all duration-300"
+              key={`${partner.name}-${i}`}
+              className="group flex items-center justify-center px-6 py-4 rounded-xl bg-card/50 border border-border/50 hover:border-primary/20 hover:bg-card hover:shadow-md transition-all duration-300"
             >
-              <span className="whitespace-nowrap text-sm font-semibold text-muted-foreground group-hover:text-foreground transition-colors">
-                {name}
-              </span>
+              <Image
+                src={partner.logo}
+                alt={partner.name}
+                width={120}
+                height={48}
+                className="h-8 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-300 grayscale group-hover:grayscale-0"
+                style={{ width: "auto", height: "32px" }}
+              />
             </div>
           ))}
         </div>
