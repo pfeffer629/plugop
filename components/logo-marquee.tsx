@@ -28,24 +28,24 @@ export default function LogoMarquee() {
       </div>
       
       <div className="relative">
-        <div className="animate-marquee flex w-max gap-12 items-center">
+        <div className="animate-marquee flex w-max gap-8 items-center">
           {[...partners, ...partners, ...partners].map((partner, i) => (
             <div
               key={`${partner.name}-${i}`}
-              className="group flex items-center justify-center px-6 py-4 rounded-xl bg-card/50 border border-border/50 hover:border-primary/20 hover:bg-card hover:shadow-md transition-all duration-300"
+              className="group flex items-center justify-center w-[160px] h-[72px] rounded-xl bg-card/50 border border-border/50 hover:border-primary/20 hover:bg-card hover:shadow-md transition-all duration-300"
             >
               {partner.bgColor ? (
                 <div 
-                  className="flex items-center justify-center px-4 py-2 rounded-[5px]"
-                  style={{ backgroundColor: partner.bgColor, aspectRatio: "1.61538" }}
+                  className="flex items-center justify-center h-8 px-3 rounded-[5px]"
+                  style={{ backgroundColor: partner.bgColor }}
                 >
                   <Image
                     src={partner.logo}
                     alt={partner.name}
-                    width={120}
-                    height={48}
-                    className="h-6 w-auto object-contain"
-                    style={{ width: "auto", height: "24px" }}
+                    width={60}
+                    height={20}
+                    className="object-contain"
+                    style={{ width: "auto", height: "16px" }}
                   />
                 </div>
               ) : (
@@ -53,9 +53,9 @@ export default function LogoMarquee() {
                   src={partner.logo}
                   alt={partner.name}
                   width={120}
-                  height={48}
-                  className="h-8 w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ width: "auto", height: "32px" }}
+                  height={40}
+                  className="object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 max-h-8 max-w-[120px]"
+                  style={{ width: "auto", height: "auto" }}
                 />
               )}
             </div>
