@@ -84,10 +84,10 @@ export default function Hero() {
           <div className="flex-1 mt-16 lg:mt-0 animate-fade-up opacity-0 delay-300">
             <div className="relative">
               {/* Main Card - Stats Dashboard */}
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-primary/10 border border-border bg-card p-8">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-primary/10 border border-primary/10 bg-gradient-to-br from-card via-card to-primary/5 p-8">
                 {/* Stats grid */}
                 <div className="grid grid-cols-2 gap-6">
-                  <div className="glass rounded-2xl p-5 flex flex-col">
+                  <div className="rounded-2xl p-5 flex flex-col bg-gradient-to-br from-white/80 to-primary/5 dark:from-white/5 dark:to-primary/10 border border-primary/10">
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center">
                         <Zap className="w-5 h-5 text-green-500" />
@@ -98,7 +98,7 @@ export default function Hero() {
                     <div className="text-xs text-muted-foreground mt-1">vehicles connected</div>
                   </div>
                   
-                  <div className="glass rounded-2xl p-5 flex flex-col">
+                  <div className="rounded-2xl p-5 flex flex-col bg-gradient-to-br from-white/80 to-accent/5 dark:from-white/5 dark:to-accent/10 border border-accent/10">
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
                         <Shield className="w-5 h-5 text-primary" />
@@ -109,7 +109,7 @@ export default function Hero() {
                     <div className="text-xs text-muted-foreground mt-1">optimal distribution</div>
                   </div>
                   
-                  <div className="glass rounded-2xl p-5 flex flex-col">
+                  <div className="rounded-2xl p-5 flex flex-col bg-gradient-to-br from-white/80 to-primary/5 dark:from-white/5 dark:to-primary/10 border border-primary/10">
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
                         <TrendingUp className="w-5 h-5 text-accent" />
@@ -120,7 +120,7 @@ export default function Hero() {
                     <div className="text-xs text-muted-foreground mt-1">cost reduction</div>
                   </div>
                   
-                  <div className="glass rounded-2xl p-5 flex flex-col">
+                  <div className="rounded-2xl p-5 flex flex-col bg-gradient-to-br from-white/80 to-accent/5 dark:from-white/5 dark:to-accent/10 border border-accent/10">
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center">
                         <Zap className="w-5 h-5 text-blue-500" />
@@ -135,7 +135,7 @@ export default function Hero() {
 
               {/* Floating Feature Cards */}
               <div className="absolute -left-4 top-1/4 animate-float hidden lg:block">
-                <div className="glass rounded-2xl p-4 shadow-lg flex items-center gap-3 max-w-[200px]">
+                <div className="rounded-2xl p-4 shadow-lg flex items-center gap-3 max-w-[200px] bg-gradient-to-br from-white to-primary/10 dark:from-card dark:to-primary/20 border border-primary/20">
                   <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                     <Shield className="w-5 h-5 text-primary" />
                   </div>
@@ -147,7 +147,7 @@ export default function Hero() {
               </div>
 
               <div className="absolute -right-4 top-1/2 animate-float delay-500 hidden lg:block">
-                <div className="glass rounded-2xl p-4 shadow-lg flex items-center gap-3 max-w-[200px]">
+                <div className="rounded-2xl p-4 shadow-lg flex items-center gap-3 max-w-[200px] bg-gradient-to-br from-white to-accent/10 dark:from-card dark:to-accent/20 border border-accent/20">
                   <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
                     <TrendingUp className="w-5 h-5 text-accent" />
                   </div>
