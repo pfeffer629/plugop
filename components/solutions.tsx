@@ -1,109 +1,255 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Building2,
   Hotel,
   Briefcase,
   MapPin,
   Truck,
+  ArrowRight,
+  Check,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 const solutions = [
   {
     id: "apartments",
-    label: "Apartment Complexes",
+    label: "Apartments",
     icon: Building2,
-    description:
-      "Install cost-effective EV charging across your apartment community. PlugOp's energy management maximizes the number of chargers per circuit, keeping costs low for residents and management.",
+    title: "Apartment Complexes",
+    description: "Install cost-effective EV charging across your apartment community with AI-powered energy management.",
+    image: "/images/ev-charger-hilliard.jpg",
+    features: [
+      "Maximize chargers per circuit",
+      "Resident billing integration",
+      "24/7 monitoring & support",
+    ],
   },
   {
     id: "hospitality",
     label: "Hospitality",
     icon: Hotel,
-    description:
-      "Attract EV-driving guests to your hotel or resort with reliable charging amenities. PlugOp ensures a seamless experience with transparent charging times and automated billing.",
+    title: "Hotels & Resorts",
+    description: "Attract EV-driving guests with reliable charging amenities and seamless automated billing.",
+    image: "/images/ev-chargers-garage.jpg",
+    features: [
+      "Guest charging integration",
+      "Automated billing systems",
+      "Premium guest experience",
+    ],
   },
   {
     id: "workplace",
     label: "Workplace",
     icon: Briefcase,
-    description:
-      "Offer EV charging as a workplace benefit. PlugOp makes it easy to manage employee charging schedules and allocate power efficiently across your corporate parking facilities.",
+    title: "Corporate Facilities",
+    description: "Offer EV charging as a workplace benefit with efficient employee charging management.",
+    image: "/images/man-charging-ev.jpg",
+    features: [
+      "Employee scheduling",
+      "Power allocation control",
+      "Usage reporting & analytics",
+    ],
   },
   {
     id: "public",
-    label: "Public Charging",
+    label: "Public",
     icon: MapPin,
-    description:
-      "Deploy public charging stations at retail locations and public spaces. PlugOp's software handles payment processing, load balancing, and usage analytics out of the box.",
+    title: "Public Charging",
+    description: "Deploy public stations at retail locations with integrated payment processing.",
+    image: "/images/energy-management.jpg",
+    features: [
+      "Payment processing built-in",
+      "Load balancing automation",
+      "Real-time usage analytics",
+    ],
   },
   {
     id: "fleet",
-    label: "Fleet Charging",
+    label: "Fleet",
     icon: Truck,
-    description:
-      "Keep your fleet vehicles charged and ready. PlugOp's AI prioritizes charging based on departure schedules, ensuring every vehicle is ready when it needs to be.",
+    title: "Fleet Charging",
+    description: "Keep your fleet vehicles charged and ready with AI-prioritized departure scheduling.",
+    image: "/images/hero-bg.jpg",
+    features: [
+      "Departure schedule priority",
+      "Route optimization ready",
+      "Fleet management integration",
+    ],
   },
 ];
 
 export default function Solutions() {
   const [active, setActive] = useState("apartments");
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
   const current = solutions.find((s) => s.id === active)!;
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="solutions" className="bg-card py-24">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary">
-            Solutions
-          </p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-foreground md:text-4xl text-balance">
-            Charging Solutions for Any Application
+    <section ref={sectionRef} id="solutions" className="relative py-24 lg:py-32 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-muted/30" />
+      <div className="absolute inset-0 grid-pattern opacity-50" />
+      
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
+        {/* Header */}
+        <div className={`max-w-3xl mx-auto text-center mb-16 ${isInView ? "animate-fade-up opacity-0" : "opacity-0"}`}>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/5 border border-accent/10 mb-6">
+            <Building2 className="w-4 h-4 text-accent" />
+            <span className="text-sm font-medium text-accent">Solutions</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground">
+            Charging Solutions for{" "}
+            <span className="gradient-text">Any Application</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            From public charging at a retail location to assigned charging in an
-            apartment. PlugOp will operate a charging program to fit your needs.
+          <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
+            From public charging at a retail location to assigned charging in an apartment. 
+            PlugOp operates a charging program to fit your needs.
           </p>
         </div>
 
-        <div className="mt-12 flex flex-wrap justify-center gap-3">
+        {/* Solution Tabs */}
+        <div className={`flex flex-wrap justify-center gap-2 mb-12 ${isInView ? "animate-fade-up opacity-0 delay-100" : "opacity-0"}`}>
           {solutions.map((s) => {
             const Icon = s.icon;
+            const isActive = active === s.id;
+            
             return (
               <button
                 key={s.id}
                 onClick={() => setActive(s.id)}
-                className={cn(
-                  "flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-colors",
-                  active === s.id
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                )}
+                className={`group relative flex items-center gap-2 px-5 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                  isActive
+                    ? "bg-primary text-white shadow-lg shadow-primary/20"
+                    : "bg-card text-foreground hover:bg-card/80 border border-border"
+                }`}
               >
-                <Icon className="h-4 w-4" />
-                {s.label}
+                <Icon className={`w-4 h-4 transition-transform duration-300 ${isActive ? "scale-110" : "group-hover:scale-110"}`} />
+                <span>{s.label}</span>
               </button>
             );
           })}
         </div>
 
-        <div className="mx-auto mt-10 max-w-2xl rounded-2xl border border-border bg-background p-8 text-center">
-          <current.icon className="mx-auto h-10 w-10 text-primary" />
-          <h3 className="mt-4 text-xl font-bold text-foreground">
-            {current.label}
-          </h3>
-          <p className="mt-3 leading-relaxed text-muted-foreground">
-            {current.description}
-          </p>
-          <Link
-            href="#contact"
-            className="mt-6 inline-flex items-center justify-center rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Explore Solutions
-          </Link>
+        {/* Solution Content */}
+        <div className={`${isInView ? "animate-fade-up opacity-0 delay-200" : "opacity-0"}`}>
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            {/* Image */}
+            <div className="relative order-2 lg:order-1">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-card border border-border shadow-2xl">
+                {solutions.map((solution) => (
+                  <div
+                    key={solution.id}
+                    className={`absolute inset-0 transition-all duration-700 ease-out ${
+                      active === solution.id
+                        ? "opacity-100 scale-100"
+                        : "opacity-0 scale-110"
+                    }`}
+                  >
+                    <Image
+                      src={solution.image}
+                      alt={solution.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
+                
+                {/* Floating badge */}
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className="glass rounded-xl p-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-foreground">{current.title}</span>
+                      <span className="px-2 py-1 text-xs font-semibold bg-primary/10 text-primary rounded-full">
+                        Active
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Decorative elements */}
+              <div className="absolute -z-10 -bottom-6 -right-6 w-full h-full rounded-3xl bg-primary/5 border border-primary/10" />
+            </div>
+
+            {/* Content */}
+            <div className="order-1 lg:order-2">
+              <div className="space-y-6">
+                {solutions.map((solution) => {
+                  const Icon = solution.icon;
+                  const isActive = active === solution.id;
+                  
+                  return (
+                    <div
+                      key={solution.id}
+                      className={`transition-all duration-500 ${
+                        isActive ? "opacity-100" : "opacity-0 absolute pointer-events-none"
+                      }`}
+                    >
+                      {isActive && (
+                        <>
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                              <Icon className="w-6 h-6 text-primary" />
+                            </div>
+                            <h3 className="text-2xl lg:text-3xl font-bold text-foreground">
+                              {solution.title}
+                            </h3>
+                          </div>
+                          
+                          <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                            {solution.description}
+                          </p>
+                          
+                          <div className="space-y-4 mb-8">
+                            {solution.features.map((feature, i) => (
+                              <div
+                                key={i}
+                                className="flex items-center gap-3 animate-fade-up opacity-0"
+                                style={{ animationDelay: `${i * 100}ms` }}
+                              >
+                                <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                  <Check className="w-3.5 h-3.5 text-primary" />
+                                </div>
+                                <span className="text-foreground font-medium">{feature}</span>
+                              </div>
+                            ))}
+                          </div>
+                          
+                          <Link
+                            href="#contact"
+                            className="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white group"
+                          >
+                            <span>Explore This Solution</span>
+                            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                          </Link>
+                        </>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

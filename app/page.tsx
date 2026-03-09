@@ -12,12 +12,12 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main>
+      <main className="overflow-hidden">
         <Hero />
         <LogoMarquee />
         <Features />
-        <UserInterface />
         <Solutions />
+        <UserInterface />
         <Blog />
         <Contact />
       </main>
