@@ -40,17 +40,15 @@ export default function Header() {
           href="/" 
           className="relative group flex items-center"
         >
-          <div className="px-3 py-1.5 rounded-xl bg-white/90 dark:bg-white/95 backdrop-blur-sm shadow-sm border border-border/50 transition-all duration-300 group-hover:shadow-md group-hover:scale-105">
-            <Image
-              src="/images/logo-full.svg"
-              alt="PlugOp"
-              width={120}
-              height={34}
-              className="h-7"
-              style={{ width: "auto", height: "28px" }}
-              priority
-            />
-          </div>
+          <Image
+            src="/images/logo-full.svg"
+            alt="PlugOp"
+            width={140}
+            height={40}
+            className="h-9 transition-transform duration-300 group-hover:scale-105 drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)] dark:drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)] dark:brightness-0 dark:invert"
+            style={{ width: "auto", height: "36px" }}
+            priority
+          />
         </Link>
 
         {/* Desktop Navigation */}
